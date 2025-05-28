@@ -9,8 +9,8 @@ const jwt = require('jsonwebtoken');
 
 // This function generates a JWT token for the user (admin, teacher, student) 
 // after a successfull login with their generated ID.
-const generateToken = (id) => {
-    return jwt.sign({ id: id }, process.env.JWT_SECRET, { expiresIn: '5h' });
+const generateToken = (user) => {
+    return jwt.sign({ id: user._id, role:user.role, name:user.name, email:user.email }, process.env.JWT_SECRET, { expiresIn: '5h' });
 };
 
 const auth = (req, res, next) => {

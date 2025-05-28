@@ -5,11 +5,15 @@ It contains parser to parse the incoming request bodies.
 */
 const express = require('express');
 const app=express();
-
+const cors = require('cors');
 const connectMongoDB = require('./src/config/database');
 const registerAdmin = require('./src/admin/admin');
 const generateToken =require('./src/middleware/authMiddleware');
+const authRoutes = require('./src/routes/authRoutes')
+
+app.use(cors());
 app.use(express.json());
+
 
 // The following callAdminRegister() async function helps to connect the mongodb database and to register the admin to the database
 const callAdminRegister = async()=> {
@@ -23,6 +27,7 @@ const callAdminRegister = async()=> {
 }
 callAdminRegister();
 
+app.use('/api',authRoutes);
 
 
 
