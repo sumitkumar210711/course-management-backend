@@ -9,7 +9,13 @@ const cors = require('cors');
 const connectMongoDB = require('./src/config/database');
 const registerAdmin = require('./src/admin/admin');
 const generateToken =require('./src/middleware/authMiddleware');
-const authRoutes = require('./src/routes/authRoutes')
+const authRoutes = require('./src/routes/authRoutes');
+const studentRoutes = require('./src/routes/studentRoutes');
+const teacherRoutes = require('./src/routes/teacherRoutes');
+const courseRoutes = require('./src/routes/courseRoutes');
+const studentCourseRoutes = require('./src/routes/studentCourseRoutes');
+const mappingRoutes = require('./src/routes/mappingRoutes');
+
 
 app.use(cors());
 app.use(express.json());
@@ -28,6 +34,11 @@ const callAdminRegister = async()=> {
 callAdminRegister();
 
 app.use('/api',authRoutes);
+app.use('/api',studentRoutes);
+app.use('/api',teacherRoutes);
+app.use('/api',courseRoutes);
+app.use('/api',studentCourseRoutes);
+app.use('/api',mappingRoutes);
 
 
 
