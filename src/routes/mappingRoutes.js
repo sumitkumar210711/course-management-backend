@@ -5,6 +5,7 @@ const {
   getStudentsByTeacherId,
   getCoursesByStudentId,
   getTeacherByStudentId,
+  assignCourseToStudent
 } = require('../controllers/mappingController');
 
 const { auth } = require('../middleware/authMiddleware');
@@ -20,5 +21,7 @@ router.get('/students/:id/courses', auth, getCoursesByStudentId);
 
 
 router.get('/students/:id/teacher', auth, getTeacherByStudentId);
+
+router.post('/student/assign-courses', auth, assignCourseToStudent);
 
 module.exports = router;

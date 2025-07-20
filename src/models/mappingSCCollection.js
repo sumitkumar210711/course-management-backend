@@ -3,12 +3,12 @@ const mongoose = require('mongoose');
 const mappingSCCollection = new mongoose.Schema({
   studentId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'user',
+    ref: 'student',
     required: true
   },
   courseId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'user',
+    ref: 'course',
     required: true
   }
 }, {

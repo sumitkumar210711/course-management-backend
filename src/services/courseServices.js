@@ -1,4 +1,4 @@
-const { createCourseRepository } = require('../repositories/courseRepository');
+const { createCourseRepository, viewCourses } = require('../repositories/courseRepository');
 
 const createCourseService = async (courseData) => {
   try {
@@ -9,4 +9,16 @@ const createCourseService = async (courseData) => {
   }
 };
 
-module.exports = { createCourseService };
+const viewCourseService = async()=>{
+  try{
+    const courseDetails = await viewCourses(); 
+    return courseDetails;
+
+  }catch(error){
+
+    throw error;
+
+  }
+}
+
+module.exports = { createCourseService, viewCourseService };

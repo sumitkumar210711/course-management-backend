@@ -39,10 +39,22 @@ const getTeacherByStudentId = async (req, res) => {
     res.status(500).json({ status_code: 500, error: error.message });
   }
 };
+const assignCourseToStudent = async (req, res) => {
+  const { studentId, courseIds } = req.body;
+  console.log('Assigning courses:', { studentId, courseIds });
+
+  try {
+    const result = await mappingService.assignCoursesToStudent(studentId, courseIds);
+    res.status(200).json({ message: 'Courses assigned successfully', data: result });
+  } catch (error) {
+    res.status(500).json({ message: 'Error assigning courses', error: error.message });
+  }
+};
 
 module.exports = {
+  assignCourseToStudent,
   getCoursesByTeacherId,
   getStudentsByTeacherId,
   getCoursesByStudentId,
-  getTeacherByStudentId
+  getTeacherByStudentId,
 };

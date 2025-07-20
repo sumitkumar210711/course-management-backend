@@ -1,4 +1,4 @@
-const { createCourseService } = require('../services/courseServices');
+const { createCourseService, viewCourseService } = require('../services/courseServices');
 
 const createCourseController = async (req, res) => {
   try {
@@ -31,4 +31,24 @@ const createCourseController = async (req, res) => {
   }
 };
 
-module.exports = { createCourseController };
+const viewCoursesController = async(req,res) =>{
+  try{
+     console.log("course details are going to be fetched");
+    const courses = await viewCourseService();
+    console.log("courses fetched", courses);
+    return res.status(200).send({
+      status_code: 200,
+      data: courses
+    });
+  } catch (error) {
+    return res.status(500).send({
+      status_code: 500,
+      error: error.message
+    });
+  }
+
+}
+
+
+module.exports = { createCourseController,
+   viewCoursesController };
